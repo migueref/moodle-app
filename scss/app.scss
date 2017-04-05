@@ -41,7 +41,9 @@ $button-default-active-border: $positive;
   box-shadow: none;
   color: #fff;
 }
-
+.bar-header{
+  background-color: #263238!important;
+}
 .button, .button.button-light, .button.button-stable, .button.button-positive, .button.button-calm, .button.button-assertive,
 .button.button-balanced, .button.button-energized, .button.button-royal, .button.button-dark {
   border-color: $button-default-border;
