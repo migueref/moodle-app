@@ -1,0 +1,45 @@
+<ion-view view-title="{{ 'mm.sidemenu.payments' | translate }}">
+    <ion-content padding="true">
+      <!-- {{message}} -->
+      <ion-item>
+        <ion-label>Pagos generados</ion-label>
+
+        <div class="select full-width">
+          <select id="slct" class='form-control' ng-model='frm_rpayment.course' ng-options='rpayment.name for rpayment in rpayments' required=''>
+                    <!-- <option value=''>Pagos generados</option> -->
+          </select>
+        </div>
+
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>Proceso de pago</ion-label>
+        <div class="select full-width">
+          <select ng-model="mySelect" ng-change="showSelectValue(mySelect)" id="slct">
+              <option>36</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+          </select>
+        </div>
+
+        <button class="btn blue full-width" ion-button color="light" clear>Aceptar</button>
+      </ion-item>
+      <ion-item>
+        <ion-label>Otros pagos</ion-label>
+        <div class="select full-width">
+          <select ng-model="mySelect" ng-change="showSelectValue(mySelect)" id="slct">
+              <option>36</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+          </select>
+        </div>
+        <button class="btn blue full-width" ion-button color="light" clear>Aceptar</button>
+      </ion-item>
+
+    </ion-content>
+</ion-view>
