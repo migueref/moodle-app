@@ -1,6 +1,11 @@
 {
     "appsettings": "App settings",
     "help": "Help",
+    "payments": "Payments",
+    "bills": "Bills",
+    "desertion": "Desertion",
+    "admin": "Administration",
+    "settings": "Settings",
     "changesite": "Change site",
     "logout": "Log out",
     "mycourses": "My courses",

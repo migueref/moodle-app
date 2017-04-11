@@ -8,7 +8,7 @@
     "credentialsdescription": "Please provide your username and password to log in.",
     "confirmdeletesite": "Are you sure you want to delete the site {{sitename}}?",
     "connect": "Connect!",
-    "connecttomoodle": "Connect to Moodle",
+    "connecttomoodle": "Connect to Ecampus",
     "contactyouradministrator": "Contact your site administrator for further help.",
     "contactyouradministratorissue": "Please, ask the administrator to check the following issue: {{$a}}",
     "emailconfirmsent": "<p>An email should have been sent to your address at <b>{{$a}}</b></p><p>It contains easy instructions to complete your registration.</p><p>If you continue to have difficulty, contact the site administrator.</p>",

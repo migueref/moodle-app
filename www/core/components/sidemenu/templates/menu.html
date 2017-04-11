@@ -62,7 +62,23 @@
                             <i class="icon ion-help-buoy"></i>{{ 'mm.sidemenu.help' | translate}}
                         </a>
                     </li> -->
-                    <li class="item item-divider"></li>
+                    <li class="item item-divider">{{ 'mm.sidemenu.admin' | translate}}</li>
+                    <li>
+                        <a menu-close class="item item-icon-left" ui-sref="site.payments" title="{{ 'mm.sidemenu.payments' | translate}}">
+                            <i class="icon ion-cash"></i>{{ 'mm.sidemenu.payments' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a menu-close class="item item-icon-left" ui-sref="site.bills" title="{{ 'mm.sidemenu.bills' | translate}}">
+                            <i class="icon ion-calculator"></i>{{ 'mm.sidemenu.bills' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a menu-close class="item item-icon-left" ui-sref="site.desertion" title="{{ 'mm.sidemenu.desertion' | translate}}">
+                            <i class="icon ion-arrow-graph-down-left"></i>{{ 'mm.sidemenu.desertion' | translate}}
+                        </a>
+                    </li>
+                    <li class="item item-divider">{{ 'mm.sidemenu.settings' | translate}}</li>
                     <li>
                         <a menu-close class="item item-icon-left" ui-sref="site.mm_settings" title="{{ 'mm.sidemenu.appsettings' | translate}}">
                             <i class="icon ion-gear-b"></i>{{ 'mm.sidemenu.appsettings' | translate}}

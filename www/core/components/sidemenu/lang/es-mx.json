@@ -5,5 +5,10 @@
     "logout": "Salir del sitio",
     "mycourses": "Mis cursos",
     "togglemenu": "Alternar menú",
+    "payments": "Pagos",
+    "bills": "Facturas",
+    "desertion": "Deserción",
+    "admin": "Administración",
+    "settings": "Ajustes",        
     "website": "Página web"
 }

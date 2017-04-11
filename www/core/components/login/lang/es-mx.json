@@ -6,7 +6,7 @@
     "checksiteversion": "Revisar que su sitio usa Moodle 2.4 o más reciente.",
     "confirmdeletesite": "¿Está Usted seguro de querer eliminar el sitio {{sitename}}?",
     "connect": "¡Conectar!",
-    "connecttomoodle": "Conectar a Moodle",
+    "connecttomoodle": "Conectar a Ecampus",
     "contactyouradministrator": "Contacte a su administrador del sitio para más ayuda.",
     "contactyouradministratorissue": "Por favor, pídale al administrador que revise el siguiente problema: {{$a}}",
     "createaccount": "Crear mi cuenta nueva",
