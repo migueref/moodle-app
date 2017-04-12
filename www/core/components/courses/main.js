@@ -46,6 +46,15 @@ angular.module('mm.core.courses', ['mm.core.contentlinks'])
             }
         }
     })
+    .state('site.bills', {
+        url: '/mm_bills',
+        views: {
+            'site': {
+                templateUrl: 'core/components/courses/templates/bills.html',
+                controller: 'mmPaymentsCtrl'
+            }
+        }
+    })
     .state('site.desertion', {
         url: '/mm_desertion',
         views: {

@@ -21,8 +21,20 @@ angular.module('mm.core.courses')
  * @ngdoc controller
  * @name mmCoursesListCtrl
  */
+ .directive('uploaderModel', ["$parse", function ($parse) {
+ 	return {
+ 		restrict: 'A',
+ 		link: function (scope, iElement, iAttrs)
+ 		{
+ 			iElement.on("change", function(e)
+ 			{
+ 				$parse(iAttrs.uploaderModel).assign(scope, iElement[0].files[0]);
+ 			});
+ 		}
+ 	};
+ }])
 .controller('mmPaymentsCtrl', function($scope, $mmCourses, $mmCoursesDelegate, $mmUtil, $mmEvents, $mmSite, $q,
-            mmCoursesEventMyCoursesUpdated, mmCoursesEventMyCoursesRefreshed, mmCoreEventSiteUpdated,$http) {
+            mmCoursesEventMyCoursesUpdated, mmCoursesEventMyCoursesRefreshed, mmCoreEventSiteUpdated,$http,billService) {
 
     var updateSiteObserver,
         myCoursesObserver;
@@ -30,6 +42,15 @@ angular.module('mm.core.courses')
     $scope.searchEnabled = $mmCourses.isSearchCoursesAvailable() && !$mmCourses.isSearchCoursesDisabledInSite();
     $scope.areNavHandlersLoadedFor = $mmCoursesDelegate.areNavHandlersLoadedFor;
     $scope.filter = {};
+    $scope.frm_rpayment={};
+    $scope.countries=[];
+  	$scope.payments=[];
+  	$scope.rpayments=[];
+  	$scope.federal=[];
+  	$scope.panel_display=false;
+  	$scope.frm_payment={};
+  	$scope.frm_bill={};
+    $scope.file="";
 
     $scope.showOpc= function(value){
 					$scope.panel_display=value;
@@ -37,13 +58,11 @@ angular.module('mm.core.courses')
 				}
 				//New bill with fille
 				$scope.newBill = function(){
-					////console.log($scope.frm_solicitud.documento)
-					if($scope.file){
-						$scope.contained_progressbar = ngProgressFactory.createInstance();
-					  $scope.contained_progressbar.setColor('#58AFE3');
-						$scope.contained_progressbar.setParent(document.getElementById('demo_contained'));
-						$scope.contained_progressbar.setAbsolute();
-						$scope.contained_progressbar.start();
+          console.log("newbill ")
+
+            console.log("newbill with file")
+
+						
 						//	$event.preventDefault();
 						var name = $scope.name;
 						var file = $scope.file;
@@ -63,9 +82,6 @@ angular.module('mm.core.courses')
 								delete $scope.frm_solicitud.course;
 								$scope.uploadedFiles=null;
 						});
-					}else {
-							$scope.message="Debe elegir un documento";
-					}
 				}
 				//new bill Anterior
 			 	// $scope.newBill = function (){
@@ -111,7 +127,9 @@ angular.module('mm.core.courses')
 					method: 'POST',
 					url: 'https://www.cife.edu.mx/admin/application/Controllers/usersCtrl.php',
 					data: {
-						txt_funcion: "getFederalInfo"
+						txt_funcion: "getFederalInfo",
+            username:  $scope.siteinfo.username
+
 					}
 				})
 				.success(function(data){
@@ -129,7 +147,7 @@ angular.module('mm.core.courses')
 				})
 				.success(function(data){
 					 $scope.rpayments=data;
-					// //console.log($scope.rpayments)
+					console.log($scope.rpayments)
 				})
 				$http.get("https://www.cife.edu.mx/admin/application/Controllers/countryCtrl.php")
 				 .success(function(data){
@@ -257,4 +275,33 @@ angular.module('mm.core.courses')
         myCoursesObserver && myCoursesObserver.off && myCoursesObserver.off();
         updateSiteObserver && updateSiteObserver.off && updateSiteObserver.off();
     });
-});
+})
+.service('billService', ["$http", "$q", function ($http, $q){
+	this.newBill = function(file, name, idPayment_user, idFederal_info){
+	  console.log(name);
+	  console.log(idPayment_user);
+	  console.log(idFederal_info);
+	  var deferred = $q.defer();
+	  var formData = new FormData();
+	  formData.append("name", name);
+	  formData.append("file", file);
+	  formData.append("idPayment_user", idPayment_user);
+	  formData.append("idFederal_info", idFederal_info);
+	  formData.append("txt_funcion", "newBill");
+	  return $http.post("https://www.cife.edu.mx/admin/application/Controllers/paymentCtrl.php", formData, {
+	    headers: {
+	      "Content-type": undefined
+	    },
+	    transformRequest: angular.identity
+	  })
+	  .success(function(res)
+	  {
+	    deferred.resolve(res);
+	  })
+	  .error(function(msg, code)
+	  {
+	    deferred.reject(msg);
+	  })
+	  return deferred.promise;
+	}
+}])
