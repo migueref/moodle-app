@@ -25,7 +25,7 @@
               <p class='description text-center' ng-show='frm_rpayment.course'></p>
               <div class='col-xs-6'>
                 <a href='' ng-click='GenerateReport(frm_rpayment.course)'>
-                  <img class='col-xs-12' ng-show='frm_rpayment.course' ng-src='../public/files/{{frm_rpayment.course.bankname}}.png'>
+                  <img class='col-xs-12' ng-show='frm_rpayment.course' ng-src='https://www.cife.edu.mx/admin/public/files/{{frm_rpayment.course.bankname}}.png'>
                 </a>
               </div>
               <div class='col-xs-6'>
@@ -41,7 +41,7 @@
                   <input name='amount' type='hidden' value='{{frm_rpayment.course.amountmx}}'>
                   <input name='return' type='hidden' value='http://www.cife.edu.mx/'>
                   <input name='cancel_return' type='hidden' value='http://www.cife.edu.mx/'>
-                  <input alt='Submit' border='0' class='col-xs-12' ng-show='frm_rpayment.course' ng-src='www.cife.edu.mx/admin/public/files/paypal.png' type='image'>
+                  <input alt='Submit' border='0' class='col-xs-12' ng-show='frm_rpayment.course' ng-src='https://www.cife.edu.mx/admin/public/files/paypal.png' type='image'>
                 </form>
               </div>
               <p ng-show='frm_rpayment.course'><b>Pago para extranjeros:</b> {{frm_rpayment.course.amountusd}}USD </p>
@@ -57,7 +57,7 @@
                   <input name='amount' type='hidden' value='{{frm_rpayment.course.amountusd}}'>
                   <input name='return' type='hidden' value='http://www.cife.edu.mx/'>
                   <input name='cancel_return' type='hidden' value='http://www.cife.edu.mx/'>
-                  <input alt='Submit' border='0' class='col-xs-12' ng-show='frm_rpayment.course' ng-src='www.cife.edu.mx/admin/public/files/paypal.png' type='image'>
+                  <input alt='Submit' border='0' class='col-xs-12' ng-show='frm_rpayment.course' ng-src='https://www.cife.edu.mx/admin/public/files/paypal.png' type='image'>
                 </form>
               </div>
             </div>
@@ -77,7 +77,7 @@
 
       </ion-item>
       <ion-item>
-        <ion-label>Otros pagos {{frm_payment.course}}</ion-label>
+        <ion-label>Otros pagos </ion-label>
         <form name='upload' ng-submit='generatePayment(siteinfo.username,frm_payment.course)'>
           <div class="select full-width">
               <select id="slct" class='form-control' ng-model='frm_payment.course' ng-options="(payment.name+' '+(payment.amountmx| currency : symbol : fractionSize)) for payment in payments" required=''>
