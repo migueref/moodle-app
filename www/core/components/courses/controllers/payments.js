@@ -67,157 +67,178 @@ angular.module('mm.core.courses')
 							$scope.message="Debe elegir un documento";
 					}
 				}
+				//new bill Anterior
+			 	// $scope.newBill = function (){
+			 //  //console.log($scope.frm_rpayment.course.idPayment_user);
+			 //  $http({
+			 // 		method: 'POST',
+			 // 		url: 'https://www.cife.edu.mx/admin/application/Controllers/paymentCtrl.php',
+			 // 		data: {
+			 // 			txt_funcion: "newBill",
+			 // 		idPayment_user:$scope.frm_rpayment.course.idPayment_user,
+			 // 		idFederal_info:$scope.frm_bill.federal.idFederal_info
+			 // 		}
+			 // 	})
+			 // 	.success(function(data){
+			 // 		 //console.log("Agregado")
+			 // 	})
+			 // }
 				//get payment list
 				$http({
-					method: 'JSONP',
-					url: 'https://www.cife.edu.mx/admin/Controllers/paymentCtrl.php',
-					params: {
+					method: 'POST',
+					url: 'https://www.cife.edu.mx/admin/application/Controllers/paymentCtrl.php',
+					data: {
 						txt_funcion: "getpayments"
 					}
 				})
 				.success(function(data){
 					 $scope.payments=data;
 				})
-				// //get payment list for a specific user
-				// $http({
-				// 	method: 'POST',
-				// 	url: 'https://www.cife.edu.mx/admin/Controllers/paymentCtrl.php',
-				// 	data: {
-				// 		txt_funcion: "getPaymentsUser"
-				// 	}
-				// })
-				// .success(function(data){
-				// 	 $scope.payments_user=data;
-				// })
-				// //get federal info
-				// $http({
-				// 	method: 'POST',
-				// 	url: 'https://www.cife.edu.mx/admin/Controllers/usersCtrl.php',
-				// 	data: {
-				// 		txt_funcion: "getFederalInfo"
-				// 	}
-				// })
-				// .success(function(data){
-				// 	 $scope.federal=data;
-				// 	// //console.log($scope.federal.key)
-				// })
-				// //get required payments
-				// $http({
-				// 	method: 'POST',
-				// 	url: 'https://www.cife.edu.mx/admin/Controllers/paymentCtrl.php',
-				// 	data: {
-				// 		txt_funcion: "getRequiredpayments"
-				// 	}
-				// })
-				// .success(function(data){
-				// 	 $scope.rpayments=data;
-				// 	// //console.log($scope.rpayments)
-				// })
-				// $http.get("https://www.cife.edu.mx/admin/Controllers/countryCtrl.php")
-				//  .success(function(data){
-				// 	 $scope.countries = data;
-				//  });
-				//  //Add federal info
-        // ope.AddFederalInfo= function(){
-				// 	//alert($scope.frm_bill.federal.idFederal_info)
-				// 	$http({
-				// 		method: 'POST',
-				// 		url: 'https://www.cife.edu.mx/admin/Controllers/usersCtrl.php',
-				// 		data: {
-				// 			txt_funcion: "AddFederalInfo",
-				// 			federal_key:	$scope.frm_bill.federal.key,
-				// 			registered_name:	$scope.frm_bill.federal.registered_name,
-				// 			country:	$scope.frm_bill.country.idPais,
-				// 			state:	$scope.frm_bill.federal.state,
-				// 			city:	$scope.frm_bill.federal.city,
-				// 			neighborhood:	$scope.frm_bill.federal.neighborhood,
-				// 			street:	$scope.frm_bill.federal.street,
-				// 			external:	$scope.frm_bill.federal.external,
-				// 			internal:	$scope.frm_bill.federal.internal,
-				// 			cp:	$scope.frm_bill.federal.cp,
-				// 			email:$scope.frm_bill.federal.email
-				// 		}
-				// 	})
-				// 	.success(function(data){
-				// 		 $scope.rpayments=data;
-				// 		// //console.log($scope.rpayments)
-				// 	})
-				// 	alert("Tu datos de facturación han sido agregados.")
-				// 	$scope.frm_payment=undefined;
-				// }
-				//  //update federal info
-        // ope.UpdateFederalInfo= function(){
-				// 	//alert($scope.frm_bill.federal.idFederal_info)
-				// 	$http({
-				// 		method: 'POST',
-				// 		url: 'https://www.cife.edu.mx/admin/Controllers/usersCtrl.php',
-				// 		data: {
-				// 			txt_funcion: "UpdateFederalInfo",
-				// 			idFederal_info:$scope.frm_bill.federal.idFederal_info,
-				// 			federal_key:	$scope.frm_bill.federal.key,
-				// 			registered_name:	$scope.frm_bill.federal.registered_name,
-				// 			country:	$scope.frm_bill.country.idPais,
-				// 			state:	$scope.frm_bill.federal.state,
-				// 			city:	$scope.frm_bill.federal.city,
-				// 			neighborhood:	$scope.frm_bill.federal.neighborhood,
-				// 			street:	$scope.frm_bill.federal.street,
-				// 			external:	$scope.frm_bill.federal.external,
-				// 			internal:	$scope.frm_bill.federal.internal,
-				// 			cp:	$scope.frm_bill.federal.cp,
-				// 			email:$scope.frm_bill.federal.email
-				// 		}
-				// 	})
-				// 	.success(function(data){
-				// 		 $scope.rpayments=data;
-				// 		// //console.log($scope.rpayments)
-				// 	})
-				// 	alert("Tu datos de facturación han sido actualizados.")
-				// 	$scope.frm_payment=undefined;
-				// }
-				//  //GENERAR REPORTE
-        // ope.GenerateReport = function (payment_info){
-				// 	//console.log(payment_info);
-				// 	var fileName = "ficha.pdf";
-			  //   var a = document.createElement("a");
-        // alert("Espere en lo que se genera el pdf");
-        // ttp.post("https://www.cife.edu.mx/admin/Controllers/paymentCtrl.php",{
-				//  			txt_funcion: 'GenerateBankReport',
-				// 			cname: payment_info.name,
-				// 			amountmx: payment_info.amountmx,
-				// 			bankname:payment_info.bankname
-        // ,
-        // responseType: 'arraybuffer'}
-        //
-        // uccess(function(data){
-        // ar file = new Blob([data], {type: 'application/pdf'});
-        // ar fileURL = URL.createObjectURL(file);
-			 	// 		  a.href = fileURL;
-			  //              a.download = fileName;
-			  //              a.click();
-			 	// 		  //$window.open(fileURL,"Planeacion_didactica");
-        //
-        // rror(function(err){
-        // ;
-        //
-				// //Generate payment
-				// $scope.generatePayment= function(){
-				// 	$http({
-				// 		method: 'POST',
-				// 		url: 'https://www.cife.edu.mx/admin/Controllers/paymentCtrl.php',
-				// 		data: {
-				// 			txt_funcion: "newPaymentToUser",
-				// 			idPayment:	$scope.frm_payment.course.idPayment
-				// 		}
-				// 	})
-				// 	.success(function(data){
-				// 		 $scope.rpayments=data;
-				// 		// //console.log($scope.rpayments)
-				// 	})
-				// 	alert("Your payment has been generated")
-				// 	$scope.frm_payment=undefined;
-				// 	$window.location.reload();
-        //
-				// }
+				//get payment list for a specific user
+				$http({
+					method: 'POST',
+					url: 'https://www.cife.edu.mx/admin/application/Controllers/paymentCtrl.php',
+					data: {
+						txt_funcion: "getPaymentsUser",
+            username:  $scope.siteinfo.username
+					}
+				})
+				.success(function(data){
+					 $scope.payments_user=data;
+				})
+				//get federal info
+				$http({
+					method: 'POST',
+					url: 'https://www.cife.edu.mx/admin/application/Controllers/usersCtrl.php',
+					data: {
+						txt_funcion: "getFederalInfo"
+					}
+				})
+				.success(function(data){
+					 $scope.federal=data;
+					// //console.log($scope.federal.key)
+				})
+				//get required payments
+				$http({
+					method: 'POST',
+					url: 'https://www.cife.edu.mx/admin/application/Controllers/paymentCtrl.php',
+					data: {
+						txt_funcion: "getRequiredpayments",
+            username:  $scope.siteinfo.username
+					}
+				})
+				.success(function(data){
+					 $scope.rpayments=data;
+					// //console.log($scope.rpayments)
+				})
+				$http.get("https://www.cife.edu.mx/admin/application/Controllers/countryCtrl.php")
+				 .success(function(data){
+					 $scope.countries = data;
+				 });
+				 //Add federal info
+			 	$scope.AddFederalInfo= function(){
+					//alert($scope.frm_bill.federal.idFederal_info)
+					$http({
+						method: 'POST',
+						url: 'https://www.cife.edu.mx/admin/application/Controllers/usersCtrl.php',
+						data: {
+							txt_funcion: "AddFederalInfo",
+							federal_key:	$scope.frm_bill.federal.key,
+							registered_name:	$scope.frm_bill.federal.registered_name,
+							country:	$scope.frm_bill.country.idPais,
+							state:	$scope.frm_bill.federal.state,
+							city:	$scope.frm_bill.federal.city,
+							neighborhood:	$scope.frm_bill.federal.neighborhood,
+							street:	$scope.frm_bill.federal.street,
+							external:	$scope.frm_bill.federal.external,
+							internal:	$scope.frm_bill.federal.internal,
+							cp:	$scope.frm_bill.federal.cp,
+							email:$scope.frm_bill.federal.email
+						}
+					})
+					.success(function(data){
+						 $scope.rpayments=data;
+						// //console.log($scope.rpayments)
+					})
+					alert("Tu datos de facturación han sido agregados.")
+					$scope.frm_payment=undefined;
+				}
+				 //update federal info
+			 	$scope.UpdateFederalInfo= function(){
+					//alert($scope.frm_bill.federal.idFederal_info)
+					$http({
+						method: 'POST',
+						url: 'https://www.cife.edu.mx/admin/application/Controllers/usersCtrl.php',
+						data: {
+							txt_funcion: "UpdateFederalInfo",
+							idFederal_info:$scope.frm_bill.federal.idFederal_info,
+							federal_key:	$scope.frm_bill.federal.key,
+							registered_name:	$scope.frm_bill.federal.registered_name,
+							country:	$scope.frm_bill.country.idPais,
+							state:	$scope.frm_bill.federal.state,
+							city:	$scope.frm_bill.federal.city,
+							neighborhood:	$scope.frm_bill.federal.neighborhood,
+							street:	$scope.frm_bill.federal.street,
+							external:	$scope.frm_bill.federal.external,
+							internal:	$scope.frm_bill.federal.internal,
+							cp:	$scope.frm_bill.federal.cp,
+							email:$scope.frm_bill.federal.email
+						}
+					})
+					.success(function(data){
+						 $scope.rpayments=data;
+						// //console.log($scope.rpayments)
+					})
+					alert("Tu datos de facturación han sido actualizados.")
+					$scope.frm_payment=undefined;
+				}
+				 //GENERAR REPORTE
+			 	$scope.GenerateReport = function (payment_info){
+					//console.log(payment_info);
+					var fileName = "ficha.pdf";
+			    var a = document.createElement("a");
+			 		//alert("Espere en lo que se genera el pdf");
+			 		$http.post("https://www.cife.edu.mx/admin/application/Controllers/paymentCtrl.php",{
+				 			txt_funcion: 'GenerateBankReport',
+							cname: payment_info.name,
+							amountmx: payment_info.amountmx,
+							bankname:payment_info.bankname
+			 			},
+			 			{responseType: 'arraybuffer'}
+			 		)
+			 		.success(function(data){
+			 			var file = new Blob([data], {type: 'application/pdf'});
+			 			var fileURL = URL.createObjectURL(file);
+			 			  a.href = fileURL;
+			               a.download = fileName;
+			               a.click();
+			 			  //$window.open(fileURL,"Planeacion_didactica");
+			 		})
+			 		.error(function(err){
+			 		});
+			 	}
+				//Generate payment
+				$scope.generatePayment= function(username,course){
+          console.log("dentro")
+					$http({
+						method: 'POST',
+						url: 'https://www.cife.edu.mx/admin/application/Controllers/paymentCtrl.php',
+						data: {
+							txt_funcion: "newPaymentToUser",
+							idPayment:	course.idPayment,
+              username: username
+						}
+					})
+					.success(function(data){
+						 $scope.rpayments=data;
+						// //console.log($scope.rpayments)
+					})
+					alert("Your payment has been generated")
+					$scope.frm_payment=undefined;
+					$window.location.reload();
+
+				}
+
 
     myCoursesObserver = $mmEvents.on(mmCoursesEventMyCoursesUpdated, function(siteid) {
         if (siteid == $mmSite.getId()) {
