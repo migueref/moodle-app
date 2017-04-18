@@ -1,7 +1,7 @@
 <ion-view view-title="{{ 'mm.sidemenu.bills' | translate }}">
     <ion-content padding="true">
       <!-- {{message}} -->
-      <ion-item>
+      <ion-item ng-controller="mmPaymentsCtrl">
         <h4>Facturación</h4>
         <form name='upload' ng-submit='newBill()'>
           <ion-label>Seleccione cuenta de facturación: </ion-label>
@@ -19,7 +19,7 @@
           <ion-label>Sube tu comprobante de pago</ion-label>
           <div class=" full-width">
             <input hidden='' ng-model='name' type='text'>
-            <input id='file' name='file' type='file' ng-model='file'>
+            <input id='file' name='file' type='file' uploader-model='file'>
           </div>
           <!-- Confirm federal bill data -->
           <div class='author'>

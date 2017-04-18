@@ -86,6 +86,10 @@ $mm-rte-min-height: 80px !default;
   text-align: center;
 }
 
+.pane{
+  background-image: url('../img/background.jpg');
+}
+
 .mm-logo:before {
   content: '';
   display: inline-block;
@@ -265,6 +269,11 @@ p.item-text-wrap {
 .item-message-mine .item-content {
   background-color: transparent;
   padding: 0;
+}
+
+//SIZE
+.col-xs-12{
+  width: 100%;
 }
 //SELECT personalized
 select {

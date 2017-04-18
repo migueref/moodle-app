@@ -88,4 +88,101 @@ angular.module('mm.core.courses')
         myCoursesObserver && myCoursesObserver.off && myCoursesObserver.off();
         updateSiteObserver && updateSiteObserver.off && updateSiteObserver.off();
     });
-});
+})
+//UPLOAD files
+.directive('uploaderModel', ["$parse", function ($parse) {
+	return {
+		restrict: 'A',
+		link: function (scope, iElement, iAttrs)
+		{
+			iElement.on("change", function(e)
+			{
+				$parse(iAttrs.uploaderModel).assign(scope, iElement[0].files[0]);
+			});
+		}
+	};
+}])
+.service('billService', ["$http", "$q", function ($http, $q){
+	this.newBill = function(file, name, idPayment_user, idFederal_info){
+	  console.log(name);
+	  console.log(idPayment_user);
+	  console.log(idFederal_info);
+	  var deferred = $q.defer();
+	  var formData = new FormData();
+	  formData.append("name", name);
+	  formData.append("file", file);
+	  formData.append("idPayment_user", idPayment_user);
+	  formData.append("idFederal_info", idFederal_info);
+	  formData.append("txt_funcion", "newBill");
+	  return $http.post("https://www.cife.edu.mx/admin/application/Controllers/paymentCtrl.php", formData, {
+	    headers: {
+	      "Content-type": undefined
+	    },
+	    transformRequest: angular.identity
+	  })
+	  .success(function(res)
+	  {
+	    deferred.resolve(res);
+	  })
+	  .error(function(msg, code)
+	  {
+	    deferred.reject(msg);
+	  })
+	  return deferred.promise;
+	}
+}])
+.service('upload', ["$http", "$q", function ($http, $q){
+	this.uploadFile = function(file, name,idRequired_doc,idAcademic_details,idCourse){
+	  console.log(name);
+	  console.log(idRequired_doc);
+	  console.log(idAcademic_details);
+	  console.log(idCourse);
+	  var deferred = $q.defer();
+	  var formData = new FormData();
+	  formData.append("name", name);
+	  formData.append("file", file);
+	  formData.append("idRequired_doc", idRequired_doc);
+	  formData.append("idAcademic_details", idAcademic_details);
+	  formData.append("idCourse", idCourse);
+	  formData.append("txt_funcion", "UploadFile");
+	  return $http.post("https://www.cife.edu.mx/admin/application/Controllers/filesCtrl.php", formData, {
+	    headers: {
+	      "Content-type": undefined
+	    },
+	    transformRequest: angular.identity
+	  })
+	  .success(function(res)
+	  {
+	    deferred.resolve(res);
+	  })
+	  .error(function(msg, code)
+	  {
+	    deferred.reject(msg);
+	  })
+	  return deferred.promise;
+	}
+	this.uploadImg = function(file, name){
+
+		var deferred = $q.defer();
+		var formData = new FormData();
+		formData.append("name", name);
+		formData.append("file", file);
+
+		formData.append("txt_funcion", "UploadImg");
+		return $http.post("https://www.cife.edu.mx/admin/application/Controllers/filesCtrl.php", formData, {
+			headers: {
+				"Content-type": undefined
+			},
+			transformRequest: angular.identity
+		})
+		.success(function(res)
+		{
+			deferred.resolve(res);
+		})
+		.error(function(msg, code)
+		{
+			deferred.reject(msg);
+		})
+		return deferred.promise;
+	}
+}]);

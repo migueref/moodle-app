@@ -59,29 +59,28 @@ angular.module('mm.core.courses')
 				//New bill with fille
 				$scope.newBill = function(){
           console.log("newbill ")
-
-            console.log("newbill with file")
-
-						
 						//	$event.preventDefault();
-						var name = $scope.name;
-						var file = $scope.file;
-						var idPayment_user = $scope.frm_rpayment.course.idPayment_user;
-						var idFederal_info = $scope.frm_bill.federal.idFederal_info;
-						billService.newBill(file, name,idPayment_user, idFederal_info).then(function(res){
-						 		//console.log($scope.frm_solicitud.documento.idRequired_doc)
-								if(res.data!='success'){
-									 $scope.message="Archivo no válido.";
-								}
-								if(res.data=='success'){
-									$("#file").val('');
-									$scope.file = undefined;
-									$scope.message="";
-							 	}
-								$scope.contained_progressbar.complete();
-								delete $scope.frm_solicitud.course;
-								$scope.uploadedFiles=null;
-						});
+						if($scope.file){
+              console.log("newbill with file")
+              var name = $scope.name;
+  						var file = $scope.file;
+  						var idPayment_user = $scope.frm_rpayment.course.idPayment_user;
+  						var idFederal_info = $scope.frm_bill.federal.idFederal_info;
+  						billService.newBill(file, name,idPayment_user, idFederal_info).then(function(res){
+  						 		//console.log($scope.frm_solicitud.documento.idRequired_doc)
+  								if(res.data!='success'){
+  									 $scope.message="Archivo no válido.";
+  								}
+  								if(res.data=='success'){
+  									$("#file").val('');
+  									$scope.file = undefined;
+  									$scope.message="";
+  							 	}
+  								$scope.contained_progressbar.complete();
+  								delete $scope.frm_solicitud.course;
+  								$scope.uploadedFiles=null;
+  						});
+            }
 				}
 				//new bill Anterior
 			 	// $scope.newBill = function (){
