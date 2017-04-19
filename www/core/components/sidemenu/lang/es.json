@@ -5,10 +5,13 @@
     "logout": "Salir",
     "mycourses": "Mis cursos",
     "payments": "Pagos",
+    "forums": "Foros",
+    "assignments": "Tareas",
+    "alerts": "Alertas",        
     "bills": "Facturas",
     "desertion": "Deserción",
     "admin": "Administración",
-    "settings": "Ajustes",    
+    "settings": "Ajustes",
     "togglemenu": "Cambiar menú",
     "website": "Página web"
 }

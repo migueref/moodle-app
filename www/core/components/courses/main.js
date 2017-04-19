@@ -64,6 +64,25 @@ angular.module('mm.core.courses', ['mm.core.contentlinks'])
             }
         }
     })
+    .state('site.forums', {
+        url: '/mm_forums',
+        views: {
+            'site': {
+                templateUrl: 'core/components/courses/templates/forums.html',
+                controller: 'mmForumsCtrl'
+            }
+        }
+    })
+    .state('site.assignments', {
+        url: '/mm_assignments',
+        views: {
+            'site': {
+                templateUrl: 'core/components/courses/templates/assignments.html',
+                controller: 'mmAssignmentsCtrl'
+            }
+        }
+    })
+
     .state('site.mm_searchcourses', {
         url: '/mm_searchcourses',
         views: {
