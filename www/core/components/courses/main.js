@@ -82,6 +82,15 @@ angular.module('mm.core.courses', ['mm.core.contentlinks'])
             }
         }
     })
+    .state('site.feedback', {
+        url: '/mm_feedback',
+        views: {
+            'site': {
+                templateUrl: 'core/components/courses/templates/feedback.html',
+                controller: 'mmAssignmentsCtrl'
+            }
+        }
+    })
 
     .state('site.mm_searchcourses', {
         url: '/mm_searchcourses',

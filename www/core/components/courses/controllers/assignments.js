@@ -22,53 +22,51 @@ angular.module('mm.core.courses')
  * @name mmCoursesListCtrl
  */
 .controller('mmAssignmentsCtrl', function($scope, $mmCourses, $mmCoursesDelegate, $mmUtil, $mmEvents, $mmSite, $q,
-            mmCoursesEventMyCoursesUpdated, mmCoursesEventMyCoursesRefreshed, mmCoreEventSiteUpdated,$http) {
+            mmCoursesEventMyCoursesUpdated, mmCoursesEventMyCoursesRefreshed, mmCoreEventSiteUpdated,$http,$sce) {
 
     var updateSiteObserver,
         myCoursesObserver;
-    $scope.message="miguel is here";
     $scope.searchEnabled = $mmCourses.isSearchCoursesAvailable() && !$mmCourses.isSearchCoursesDisabledInSite();
     $scope.areNavHandlersLoadedFor = $mmCoursesDelegate.areNavHandlersLoadedFor;
     $scope.filter = {};
+    $scope.get_html = function(x) {
+  		return $sce.trustAsHtml(x);
+  	}
+  	$scope.hideAssign=function(element){
+  		$scope.mdl_upcomingAssigns.splice(element, 1);
+  	}
     $http({
-				method: 'POST',
-				url: 'https://www.cife.edu.mx/admin/application/Controllers/admissionCtrl.php',
-				data: {
-					txt_funcion: "getEnrolledCourses",
-          username:  $scope.siteinfo.username
-				}
-			})
-			.success(function(data){
-					$scope.courses=data;
-					console.log($scope.courses)
-			})
-      $scope.desertion=function(baja){
-				console.log("desertion"+baja)
-				$http({
-					method: 'POST',
-					url: 'https://www.cife.edu.mx/admin/application/Controllers/admissionCtrl.php',
-					data: {
-						txt_funcion: "newDesertion",
-						tipo_baja: baja.tipo_baja,
-						idAcademic_details: baja.programa.idAcademic_details,
-						razones: baja.razones,
-						sugerencias: baja.sugerencias,
-						compromiso: baja.compromiso,
-            username:  $scope.siteinfo.username
-					}
-				})
-				.success(function(data){
-          alert("Sentimos tanto que te vayas, te esperamos de vuelta")
-					$scope.baja.tipo_baja="";
-					$scope.baja.programa="";
-					$scope.baja.razones="";
-					$scope.baja.sugerencias="";
-					$scope.baja.compromiso="";
-					$scope.courses.splice($scope.baja.programa, 1);
-
-
-				})
-			}
+	 	 	method: 'POST',
+	 	 	url: 'https://www.cife.edu.mx/admin/application/Controllers/forumCtrl.php',
+	 	 	data: {
+	 	 		txt_funcion: "getPendingAssign",
+        username:  $scope.siteinfo.username
+	 	 	}
+	 	 })
+	 	 .success(function(data){
+	 	 		 $scope.mdl_upcomingAssigns=data;
+			/*********Pagination************/
+			$scope.pagination = Pagination.getNew(5);
+			$scope.pagination.numPages = Math.ceil($scope.mdl_upcomingAssigns.length/$scope.pagination.perPage);
+			console.log($scope.pagination.page)
+			console.log($scope.mdl_upcomingAssigns)
+	 	 })
+		  //getAssigments
+		  $http({
+	 	 		method: 'POST',
+	 	 		url: 'https://www.cife.edu.mx/admin/application/Controllers/forumCtrl.php',
+	 	 		data: {
+	 	 		 txt_funcion: "Obtener_tareas_posts",
+         username:  $scope.siteinfo.username
+	 	 		}
+	 	 	})
+	 	 	.success(function(data){
+			    console.log("hola")
+	 	 		  $scope.mdl_assigns=data;
+				  console.log(data)
+				//$scope.mdl_assigns.created=timestamp = new Date($scope.mdl_assigns.created).getTime()
+				//console.log($scope.mdl_assigns)
+	 	 	})
 
 
     myCoursesObserver = $mmEvents.on(mmCoursesEventMyCoursesUpdated, function(siteid) {
