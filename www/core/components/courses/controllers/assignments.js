@@ -46,10 +46,10 @@ angular.module('mm.core.courses')
 	 	 .success(function(data){
 	 	 		 $scope.mdl_upcomingAssigns=data;
 			/*********Pagination************/
-			$scope.pagination = Pagination.getNew(5);
-			$scope.pagination.numPages = Math.ceil($scope.mdl_upcomingAssigns.length/$scope.pagination.perPage);
-			console.log($scope.pagination.page)
-			console.log($scope.mdl_upcomingAssigns)
+			// $scope.pagination = Pagination.getNew(5);
+			// $scope.pagination.numPages = Math.ceil($scope.mdl_upcomingAssigns.length/$scope.pagination.perPage);
+			// console.log($scope.pagination.page)
+			// console.log($scope.mdl_upcomingAssigns)
 	 	 })
 		  //getAssigments
 		  $http({

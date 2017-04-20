@@ -10,12 +10,12 @@
     			<div class="card" ng-repeat="assign in mdl_upcomingAssigns" >
           	<ion-list>
           		<ion-item class="item-avatar">
-        			<img src="../img/cife-logo.jpg">
+        			<img src="./img/cife-logo.jpg">
               <h2><b>{{assign.shortname}} - {{assign.assign}}</b></h2>
               <p>Fecha límite: {{assign.DateofPost}}</p>
               </ion-item>
               <ion-item class="item item-body">
-                <img class="full-image" src="../img/assignments.jpg">
+                <img class="full-image" src="./img/assignments.jpg">
                 <b class="medium-text col-xs-12" ng-bind-html='get_html(assign.commenttext)'></b>
                 <p>
                   <a class="subdued" href="http://cife.edu.mx/ecampus/mod/forum/discuss.php?d={{forum.idForumDiscussion}}">{{idForumDiscussion+forum.DiscussionName}}</a>
