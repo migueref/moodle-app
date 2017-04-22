@@ -1615,7 +1615,7 @@ mm-format-text[max-height], *[mm-format-text][max-height] {
 **********Colors***************
 ******************************/
 .white-text{
-  color:white;
+  color:grey;
 }
 .icon-tab{
   top:0;
@@ -1631,4 +1631,10 @@ mm-format-text[max-height], *[mm-format-text][max-height] {
 }
 .tab-nav{
   background: #263238;
+}
+.tabs-bar{
+  background: #263238;
+}
+.tabs-positive > .tabs{
+background-color: #263238 !important;
 }
