@@ -32,6 +32,7 @@ angular.module('mm.core.courses')
     $scope.areNavHandlersLoadedFor = $mmCoursesDelegate.areNavHandlersLoadedFor;
     $scope.filter = {};
     $scope.requests = [];
+    $scope.showStudent = false;
     $scope.get_html = function(x) {
   		return $sce.trustAsHtml(x);
   	}
