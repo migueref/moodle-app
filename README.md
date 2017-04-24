@@ -10,6 +10,7 @@ This repository was built with the following technologies:
 	- Angular
   - AngularUI Router
   - Jasmine
+<<<<<<< HEAD
 ## Install environment
 First of all you must install nvm (Node Version Manager), it's important if you are using a different versions of node.js.
 
@@ -36,6 +37,8 @@ First of all you must install nvm (Node Version Manager), it's important if you 
 ### Install the npm plugin dependencies
 
 	npm install
+=======
+>>>>>>> 7b50e169c7f148bbf1b2d925b63c7e99bde2d65e
 
 ## Build App
 Install the platforms. It's important to use these versions because newer versions are going to cause some problems with the plugins installed.
