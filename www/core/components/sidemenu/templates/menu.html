@@ -107,17 +107,11 @@
     </ion-side-menu>
 </ion-side-menus>
 <ion-tabs class="tabs-icon-top tabs-positive">
-<<<<<<< HEAD
   <msg ng-repeat="handler in handlers | orderBy:'-priority'" ng-controller="handler.controller">
     <a ng-if="state=='site.messages' || state=='site.calendar'" ui-sref="{{state}}" class="white-text tab ">
       <i class="icon-tab icon {{icon}} "></i><br>
     </a>
-  </msg>
-=======
-  <a ui-sref="site.groups" class="white-text tab">
-    <i class="icon ion-university icon-tab"></i><br>
-  </a>
->>>>>>> 7b50e169c7f148bbf1b2d925b63c7e99bde2d65e
+  </msg>  
   <a ui-sref="site.forums" class="white-text tab">
     <i class="icon ion-chatbox icon-tab"></i><br>
   </a>

@@ -82,6 +82,18 @@ angular.module('mm.core.courses', ['mm.core.contentlinks'])
             }
         }
     })
+    .state('site.assignment', {
+        url: '/mm_assignment',
+        params: {
+            course: null
+        },
+        views: {
+            'site': {
+                templateUrl: 'core/components/courses/templates/assignment.html',
+                controller: 'mmAssignmentsCtrl'
+            }
+        }
+    })
     .state('site.assignments', {
         url: '/mm_assignments',
         views: {

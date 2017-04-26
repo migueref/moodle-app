@@ -21,14 +21,22 @@ angular.module('mm.core.courses')
  * @ngdoc controller
  * @name mmCoursesListCtrl
  */
-.controller('mmAssignmentsCtrl', function($scope, $mmCourses, $mmCoursesDelegate, $mmUtil, $mmEvents, $mmSite, $q,
+.controller('mmAssignmentsCtrl', function($scope, $stateParams, $mmCourses, $mmCoursesDelegate, $mmUtil, $mmEvents, $mmSite, $q,
             mmCoursesEventMyCoursesUpdated, mmCoursesEventMyCoursesRefreshed, mmCoreEventSiteUpdated,$http,$sce) {
 
     var updateSiteObserver,
         myCoursesObserver;
     $scope.searchEnabled = $mmCourses.isSearchCoursesAvailable() && !$mmCourses.isSearchCoursesDisabledInSite();
     $scope.areNavHandlersLoadedFor = $mmCoursesDelegate.areNavHandlersLoadedFor;
+    var course = angular.copy($stateParams.course || {}), // Copy the object to prevent modifying the one from the previous view.
+        selfEnrolWSAvailable = $mmCourses.isSelfEnrolmentEnabled(),
+        guestWSAvailable = $mmCourses.isGuestWSAvailable(),
+        isGuestEnabled = false,
+        guestInstanceId,
+        enrollmentMethods,
+        waitStart = 0;
     $scope.filter = {};
+    $scope.course = course;
     $scope.get_html = function(x) {
   		return $sce.trustAsHtml(x);
   	}
