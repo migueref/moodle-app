@@ -27,12 +27,13 @@
                 </div>
                 <div class="item mm-tab-handlers" ng-show="(course._handlers && course._handlers.length) || !areNavHandlersLoadedFor(course.id)">
                     <div class="item tabs tabs-icon-top" ng-show="course._handlers && course._handlers.length">
+                        <a class="left-padding tab-item active mm-courses-handler" ui-sref="site.assignment({course: course.id})">
+                            <i class="big-icon material-icons md-36 icon ion-ios-bookmarks"></i>{{'mm.sidemenu.assignment' | translate}}
+                        </a>
                         <menu-option  class="col-sm-4" ng-repeat="handler in course._handlers | orderBy:'-priority'" ng-controller="handler.controller" >
-                          <a ng-if="title!='mma.competency.competencies'" ng-controller="handler.controller" ng-click="action($event, course)" class="left-padding tab-item active mm-courses-handler {{class}}" title="{{title | translate}}">
+
+                          <a ng-if="title!='mma.competency.competencies' && title!='mma.notes.notes'" ng-controller="handler.controller" ng-click="action($event, course)" class="left-padding tab-item active mm-courses-handler {{class}}" title="{{title | translate}}">
                             <i class="icon {{icon}}"></i> {{title | translate}}
-                          </a>
-                          <a class="left-padding tab-item active mm-courses-handler" ui-sref="site.assignment({course: course.id})">
-                              <i class="big-icon material-icons md-36 icon ion-ios-bookmarks"></i>{{'mm.sidemenu.assignment' | translate}}
                           </a>
                         </menu-option>
                     </div>
